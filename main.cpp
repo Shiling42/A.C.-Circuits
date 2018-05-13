@@ -5,15 +5,24 @@
 #include <vector>
 using namespace std;
 #include "components.h"
+#include "circuit.h"
 /* The circuit is represented by a tree structure */
 
 
 int main(){
     component *shape_array[7];
-    shape_array[0] = new resistor(1.2);
-    //shape_array[1] = new capacitor(2);
+    shape_array[0] = new capacitor(1.2);
+    shape_array[1] = new capacitor(2);
     //shape_array[2] = new inductor(3);
-    for(int i=0;i<2;i++){
+    cout.precision(1);
+    shape_array[2] = new circuit(shape_array[0],shape_array[1],"parallel");
+    shape_array[2] -> setf(4);
+    shape_array[3] = new circuit(new resistor(2),shape_array[1],"parallel");
+    //cout<< shape_array[1] -> getimpedance() <<endl;
+    shape_array[3] -> setf(2);
+    cout << shape_array[3]->getimpedance() <<endl;
+    /*
+    for(int i=0;i<1;i++){
         shape_array[i] -> setf(5);
         shape_array[i] -> setvalue(10);
         shape_array[i] -> info();
@@ -23,6 +32,6 @@ int main(){
         cout << shape_array[i]->getimpedance()<<endl;
         cout << shape_array[i]->getphase()<<endl;
         cout << shape_array[i]->getmagnitude()<<endl;
-    }
+    }*/
     return 0;
 }

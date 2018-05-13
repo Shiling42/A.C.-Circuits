@@ -2,16 +2,17 @@
 #include<math.h>
 #include<string>
 #include<complex>
+#include <limits>
 #include <vector>
 using namespace std;
 #ifndef components_h
 #define components_h
-
+const double e = std::numeric_limits< double >::min();
+const double THRESHOLD =10*e; 
 class component{
     protected:
       complex<double> impedance;
       double frequency;
-        //complex<double> impedance;
     public:
       component();
       virtual void setimpedance()=0;
