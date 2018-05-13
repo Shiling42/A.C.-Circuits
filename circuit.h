@@ -23,6 +23,7 @@ class circuit: public component{
     circuit();
     circuit(component* sub_circuit_1,component* sub_circuit_2, string ctype);
     circuit(component* sub_circuit_1);
+    void delsubcircuit();
     void setimpedance();
     void setf(double);
     void info();
@@ -30,6 +31,7 @@ class circuit: public component{
     double getvalue();
     ~circuit(){}; //virtual Destructor
 };
+
 
 
 

@@ -8,7 +8,8 @@ using namespace std;
 #ifndef components_h
 #define components_h
 const double e = std::numeric_limits< double >::min();
-const double THRESHOLD =10*e; 
+const double THRESHOLD =10*e;
+
 class component{
     protected:
       complex<double> impedance;
@@ -20,6 +21,10 @@ class component{
       virtual void info()=0;
       virtual void setvalue(double)=0;
       virtual double getvalue()=0;
+      virtual void delsubcircuit(){};
+      virtual void setc(double c){};
+      //virtual void setr(double);
+      //virtual void setl(double);
       virtual ~component(){}; //virtual Destructor
       double getmagnitude();//get magnitude of impedance
       double getphase();//get phase difference of impedance
@@ -56,7 +61,7 @@ class capacitor: public component{
       void setimpedance();
       void setvalue(double);
       void setf(double);
-      void setc(double);
+      void setc(double c);
       void info();
 };
 

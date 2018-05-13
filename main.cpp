@@ -14,13 +14,15 @@ int main(){
     shape_array[0] = new capacitor(1.2);
     shape_array[1] = new capacitor(2);
     //shape_array[2] = new inductor(3);
-    cout.precision(1);
+    //cout.precision(1);
     shape_array[2] = new circuit(shape_array[0],shape_array[1],"parallel");
     shape_array[2] -> setf(4);
     shape_array[3] = new circuit(new resistor(2),shape_array[1],"parallel");
     //cout<< shape_array[1] -> getimpedance() <<endl;
     shape_array[3] -> setf(2);
-    cout << shape_array[3]->getimpedance() <<endl;
+    shape_array[3]->info();
+    shape_array[3] -> delsubcircuit();
+    shape_array[3]->info();
     /*
     for(int i=0;i<1;i++){
         shape_array[i] -> setf(5);

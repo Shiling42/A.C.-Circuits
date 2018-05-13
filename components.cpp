@@ -97,10 +97,12 @@ void capacitor::setvalue(double c){
   capacity=c;
   setimpedance();
 };
+
 void capacitor::setc(double c){
   capacity=c;
   setimpedance();
 };
+
 void capacitor::setf(double f){
   frequency=f;
   setimpedance();
