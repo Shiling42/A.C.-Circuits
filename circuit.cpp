@@ -132,9 +132,7 @@ void circuit::delsubcircuit(){
 string circuit::getconntype(){
 return conntype;
 };
-
 //component* circuit::getsubcircuit(int i){return sub_circuit[i];};
-
 void circuit::wire(vector<bool>& branch,int& level){
   for(int i=0;i<level;i++){
     if(branch[i]){

@@ -175,13 +175,24 @@ void get_information_circuits(vector<circuit*> circuits_container){
   if(circuits_container.size()==0){
     cout<<"There are no circuits"<<endl;
   }else{
-    cout << "Here are "<< circuits_container.size() << "circuits stored"<<endl;
-    cout << "Which one do you want to check? input 0~"<< circuits_container.size()-1<<endl;
-    int circuit_label=0;
-    cin >> circuit_label;
-    if( circuit_label < circuits_container.size() && circuit_label>=0){
-        circuits_container[circuit_label]->info();
-    }else{cout<<"No such a circuit."<<endl;}
+    cout << "There are "<< circuits_container.size() << " circuits"<<endl;\
+    char input = 'y';
+    do{
+      cout << "Do you want to get the information for any one of them? (y/n):";
+      cin>>input;
+    }while(input!='y' && input!='n');
+      if(input == 'y'){
+        cout << "Which one's information do you want to get? input 0~"<< circuits_container.size()-1<<endl;
+        int circuit_label=0;
+        do{
+          cin >> circuit_label;
+          if(circuit_label==-1)break;
+          if( circuit_label < circuits_container.size() && circuit_label>=0){
+              circuits_container[circuit_label]->info();
+          }else{cout<<"No such a circuit."<<endl;}
+          cout<<"Input -1 to exist, input 0~"<< circuits_container.size()-1<<" to show another ones' infomation"<< endl;
+        }while(true);
+    }
   }
 }
 void get_information_components(vector<component*> components_container){
