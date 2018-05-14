@@ -6,7 +6,7 @@
 using namespace std;
 #include "components.h"
 #include "circuit.h"
-#include "circuitconstruction.h"
+#include "functions.h"
 /* The circuit is represented by a tree structure */
 
 
@@ -47,12 +47,15 @@ int main(){
         cout << shape_array[i]->getphase()<<endl;
         cout << shape_array[i]->getmagnitude()<<endl;
     }*/
+    cout << "Now you are going to creat you own cirucit" << endl;
     do{
-      cout << "Now you are going to creat you own cirucit" << endl;
+
       cin.clear();
       circuit* usercircuit;
       vector<circuit*> circuits_container;
+
       vector<component*> components_container;
+
       do{
       cout << "Creat your own circuit" <<endl;
       int choice=0;
@@ -60,10 +63,9 @@ int main(){
       cout << "What do you want to do now:\n";
       cout<< "1: Creat components to use later\n";
       cout<< "2: Creat a circuit\n";
-      cout<< "3: Check stored components/circuits\n";
-      cout<< "4: Show circuit information\n";
-      cout<< "5: Set circuit parameter\n";
-      cout<< "6: show all components created\n";
+      cout<< "3: Show stored components/circuits\n";
+      cout<< "4: Modify existing circuits\n";
+      cout<< "5: Modifying existnig circuits\n";
       cout<< "================================"<<endl;
       cout<< "input the number to choose:";
       cin>>choice;
@@ -117,39 +119,40 @@ int main(){
           }while(repeat);
             break;
         }
-        case 2: {}
-        case 3: {
+        case 2: {
           bool repeat(true);
           do{
-            int circuit_or_component;
-            do{
-              cout <<"Visit stored ciruits or components? 1:components ;2:circuits"<<endl;
-              cin >> circuit_or_component;
-            }while(circuit_or_component != 1 && circuit_or_component!= 2);
-            if(circuit_or_component == 1){
-              cout << "Here are "<< components_container.size() << " compinents stored"<<endl;
-              cout << "Which one do you want to check? input 1~"<<components_container.size()<<endl;
-              int component_label=0;
-              cin >> component_label;
-              if( component_label>components_container.size()){
-                components_container[component_label-1]->info();
-              }else{cout<<"No such a component."<<endl;}
-            }else{
-              cout << "Here are "<< circuits_container.size() << "circuits stored"<<endl;
-              cout << "Which one do you want to check? input 1~"<< circuits_container.size()<<endl;
-              int circuit_label=0;
-              cin >> circuit_label;
-              if( circuit_label>circuits_container.size()){
-                circuits_container[circuit_label-1]->info();
-              }else{cout<<"No such a circuit."<<endl;}
+            cout << "You are going to construct a circuit"<<endl;
+            cout << "To read the instruction on how to creat a circuit, input y, ";
+            cout << "other key to skip the sintruction"<<endl;
+            char read = 'n';
+            cin >> read;
+            if (read=='y'){
+              instruction_of_circuit_construction();
             }
             char input;
-            do{
-              cout <<"Do you want to continue checking? y/n"<<endl;
+            do{//creat circuits
+              if(circuits_container.size()==0){
+                cout << "There is not any circuit created, at least one \"component\" circuit is needed "<<endl;
+                int first_circuit;
+                do{
+                  cout<<"Input the type of first component circuit (1: resistor; 2: capacitor; 3: inductor):" <<endl;
+                  cin >> first_circuit;
+                }while((first_circuit!=1 && first_circuit !=2)&& first_circuit!=3);
+                circuits_container.push_back(new circuit(first_circuit));
+                cout << "A circuit is created and stored at circuits_container["<<circuits_container.size()<<"]"<<endl;
+              }else{
+
+              }
+              cout <<"Do you want to continue consturcting circuit? y/n"<<endl;
               cin >> input;
             }while(input != 'y' && input!='n');
             repeat = (input=='y');
           }while(repeat);
+          break;
+        }
+        case 3: {
+          get_information(components_container,circuits_container);
           break;
         }
         default: cout<<"*Wrong input."<<endl;

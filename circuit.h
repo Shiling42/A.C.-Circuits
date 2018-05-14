@@ -18,12 +18,13 @@ class circuit: public component{
   protected:
     string conntype;
     vector<circuit*> sub_circuit;
-    component* base_component;
+    component* base_component;//store the component for component type circuit
   public:
     circuit();
     circuit(circuit* sub_circuit_1,circuit* sub_circuit_2, string ctype);
     circuit(circuit* sub_circuit_1);
     circuit(component* newcomponent);
+    circuit(int basecomponent);
     string getconntype();
     //vector<circuit*> getsubcircuits(int i);
     void delsubcircuit();

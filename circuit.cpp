@@ -28,7 +28,29 @@ circuit::circuit(component* newcomponent){
   base_component = newcomponent;
   setimpedance();
 };
-
+circuit::circuit(int basecomponent){
+  conntype = "component";
+  name == "circuit";
+  switch(basecomponent){
+    case(1): {cout<<"Input the resistance"<<endl;
+              double  value;
+              cin>>value;
+              base_component = new resistor(value);
+              break;};
+    case(2):{ cout<<"input the capacity"<<endl;
+              double  value;
+              cin>>value;
+              base_component = new capacitor(value);
+              break;};
+    case(3):{ cout<<"input the inductane"<<endl;
+              double  value;
+              cin>>value;
+              base_component = new inductor(value);
+             break;} ;
+    default:{};
+  };
+  setimpedance();
+}
 void circuit::setimpedance(){
     if(conntype=="series") {
       sub_circuit[0]->setf(frequency);
