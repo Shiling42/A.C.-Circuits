@@ -59,15 +59,15 @@ int main(){
       do{
       cout << "Creat your own circuit" <<endl;
       int choice=0;
-      cout<< "===============0================"<<endl;
+      cout << "===============0================"<<endl;
       cout << "What do you want to do now:\n";
-      cout<< "1: Creat components\n";
-      cout<< "2: Creat circuits\n";
-      cout<< "3: Show stored components/circuits\n";
-      cout<< "4: Modify existing circuits\n";
-      cout<< "5: Modifying existnig circuits\n";
-      cout<< "================================"<<endl;
-      cout<< "input the number to choose:";
+      cout << "1: Creat components\n";
+      cout << "2: Creat circuits\n";
+      cout << "3: Check stored components_container/circuits_container\n";
+      cout << "4: Get information of existing circuits\n";
+      cout << "5: Modify existing circuits\n";
+      cout << "================================"<<endl;
+      cout << "input the number to choose:";
       cin>>choice;
       switch(choice){
         case 1: {
@@ -75,49 +75,7 @@ int main(){
             break;
         }
         case 2: {
-          bool repeat(true);
-          do{
-            cout << "You are going to construct a circuit"<<endl;
-            cout << "To read the instruction on how to creat a circuit, input \"y\", ";
-            cout << "any other key to skip"<<endl;
-            char read = 'n';
-            cin >> read;
-            if (read=='y'){
-              instruction_of_circuit_construction();
-            }
-            char input;
-            do{//creat circuits
-              if(circuits_container.size()==0){
-                cout << "There is not any circuit created, at least one \"component\" circuit is needed "<<endl;
-                int first_circuit;
-                do{
-                  cout<<"Input the type of first component circuit (1: resistor; 2: capacitor; 3: inductor):" <<endl;
-                  cin >> first_circuit;
-                }while((first_circuit!=1 && first_circuit !=2)&& first_circuit!=3);
-                circuits_container.push_back(new circuit(first_circuit));
-                cout << "A circuit is created and stored at circuits_container["<<circuits_container.size()<<"]"<<endl;
-              }else{
-                int type_of_circuit;
-                do{
-                  cout << "What type of circuit you want to construct?"<<endl;
-                  cout << "1: parallel; 2: series; 3: component; 4:single; 5: Empty" << endl;
-                  cin >> type_of_circuit;
-                }while(type_of_circuit!=1 && type_of_circuit!=2 &&type_of_circuit!=3 &&type_of_circuit!=4 &&type_of_circuit!=5);
-                switch(type_of_circuit){
-                  case(1):{
-                    cout << "choose two existing circuit from circuit_container to connect them in parallel"<<endl;
-                    cout << "Do you want to have a look at ";
-                  };
-                  case(2):{};
-                  case(3):{};
-                  default:{};
-                }
-              }
-              cout <<"Do you want to continue consturcting circuit? y/n"<<endl;
-              cin >> input;
-            }while(input != 'y' && input!='n');
-            repeat = (input=='y');
-          }while(repeat);
+          construct_circuit(components_container, circuits_container);
           break;
         }
         case 3: {

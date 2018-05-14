@@ -53,8 +53,6 @@ class resistor: public component{
         void info();
 };
 
-
-
 class capacitor: public component{
     private:
       double capacity;
@@ -82,6 +80,4 @@ class inductor: public component{
         void setl(double);
         void info();
 };
-
-
 #endif

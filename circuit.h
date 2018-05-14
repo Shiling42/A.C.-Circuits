@@ -37,11 +37,6 @@ class circuit: public component{
     void wire(vector<bool>&, int& );
     void plot(vector<bool>&,int& level);
     ~circuit(){}; //virtual Destructor
-
-
 };
-
-
-
 
 #endif
