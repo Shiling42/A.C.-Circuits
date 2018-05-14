@@ -9,7 +9,6 @@ using namespace std;
 #ifndef circuit_h
 #define circuit_h
 
-
 /* a circuit element is a two-end point circut element,
 it can be either a elementary circuit or a linear-parallel composition of several circuit,
 however it can still be characterized by impedance with extral internal topology structure*/
@@ -36,9 +35,9 @@ class circuit: public component{
     void branchtype(vector<bool>&,int&, bool);
     void wire(vector<bool>&, int& );
     void plot(vector<bool>&,int& level);
-
-
     ~circuit(){}; //virtual Destructor
+
+
 };
 
 
