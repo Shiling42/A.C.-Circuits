@@ -108,43 +108,51 @@ return conntype;
 };
 
 //component* circuit::getsubcircuit(int i){return sub_circuit[i];};
-/*
+
 void circuit::wire(int& space){
-  for(int i=0;i<space;i++)
-  cout << "| "<<endl;
+  for(int i=0;i<space+1;i++)
+  cout << "| ";
+
+  //cout<< space<<endl;
 }
+
 //void tree(component* circuit2plot)
 
-void circuit::plot(component* circuit2plot,int& space){
-  string name = circuit2plot -> getname();
-  if(conntype!="component"){
-    string conntype = circuit2plot -> getconntype();
-     wire(space);
+void circuit::plot(int& space){
+  //string name = circuit2plot -> getname();
+  wire(space);
+  if(conntype != "component"){
+    //string conntype = circuit2plot -> getconntype()
       if(conntype=="series" ){
-        cout<< "S\n |-"<<endl;
-        plot(circuit2plot->sub_circuit[0],space);
-        cout<< " |-"<<endl;
-        plot(circuit2plot->sub_circuit[1],space);
+        cout<< "S\n|-";
+        sub_circuit[0]->plot(space);
+        cout<< "|-";
+        sub_circuit[1]->plot(space);
+        space = space +1;
       }else if(conntype=="parallel"){
-        plot(circuit2plot->sub_circuit[0],space);
-        cout<< "P\n |-"<<endl;
-        plot(circuit2plot->sub_circuit[1],space);
+        cout<< "P\n|-";
+        sub_circuit[0]->plot(space);
+        cout<< "|-";
+        sub_circuit[1]->plot(space);
+        space = space +1;
       }else if(conntype=="empty"){
-        cout<< "E";
+        cout<< "E"<<endl;;
         space = space -1;
       }else if(conntype=="single"){
         cout<< "O-" ;
-        plot(circuit2plot->sub_circuit[0],space);
+        sub_circuit[0]->plot(space);
+        space = space +1;
       }
-  }else if(name=="resistor"){
-    cout << "R";
-    space = space -1;
-  }else if(name == "capacitor"){
-    cout << "C";
-    space = space -1;
-  }else if(name == "inductor"){
-    cout << "L";
-    space = space -1;
+  }else{
+     if(base_component->getname()=="resistor"){
+      cout << "R"<<endl;;
+      space = space -1;
+    }else if(base_component->getname() == "capacitor"){
+      cout << "C"<<endl;;
+      space = space -1;
+    }else if(base_component->getname() == "inductor"){
+      cout << "L"<<endl;;
+      space = space -1;
+    }
   }
 }
-*/

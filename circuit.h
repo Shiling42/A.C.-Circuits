@@ -33,11 +33,12 @@ class circuit: public component{
     void info();
     void setvalue(double);
     double getvalue();
-    //void plot(circuit*, int& );
-    //void wire( int& );
+    void wire( int& );
+    void plot(int& space);
+
+
     ~circuit(){}; //virtual Destructor
 };
-
 
 
 

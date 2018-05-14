@@ -22,9 +22,11 @@ int main(){
     circuit_array[3] = new circuit(circuit_array[2],circuit_array[2],"parallel");
     cout<< shape_array[1] -> getimpedance() <<endl;
     circuit_array[3] -> setf(2);
+    circuit_array[4] = new circuit(circuit_array[3],circuit_array[3],"series");
     circuit_array[2]->info();
-    circuit_array[3] -> delsubcircuit();
-    circuit_array[3]->info();
+    //circuit_array[3] -> delsubcircuit();
+    int a=0;
+    circuit_array[4]->plot(a);
     //shape_array[4] = shape_array[3]->getsubcircuit(0);
     //int d = 0;
     //plot(shape_array[3], d);
