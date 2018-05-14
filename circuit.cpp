@@ -28,10 +28,10 @@ circuit::circuit(component* newcomponent){
   base_component = newcomponent;
   setimpedance();
 };
-circuit::circuit(int basecomponent){
+circuit::circuit(int comonent_type){
   conntype = "component";
   name == "circuit";
-  switch(basecomponent){
+  switch(comonent_type){
     case(1): {cout<<"Input the resistance"<<endl;
               double  value;
               cin>>value;

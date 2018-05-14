@@ -16,4 +16,5 @@ using namespace std;
 void help(string);
 void instruction_of_circuit_construction();
 void get_information(vector<component*> components_container, vector<circuit*> circuits_container);
+void creat_component(vector<component*>& components_container);
 #endif

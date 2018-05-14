@@ -24,7 +24,7 @@ class circuit: public component{
     circuit(circuit* sub_circuit_1,circuit* sub_circuit_2, string ctype);
     circuit(circuit* sub_circuit_1);
     circuit(component* newcomponent);
-    circuit(int basecomponent);
+    circuit(int comonent_type);
     string getconntype();
     //vector<circuit*> getsubcircuits(int i);
     void delsubcircuit();
