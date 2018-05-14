@@ -3,9 +3,13 @@ using namespace std;
 
 /* member function of the base class component */
 component::component(){
-  impedance=(0,0);
+  impedance=complex<double>(0,0);
   frequency=0;
 };
+
+string component::getname(){
+  return name;
+}
 
 double component::getf(){
   return frequency;
@@ -27,9 +31,11 @@ complex<double> component::getimpedance(){
 /*memberfunction of resistor class*/
 resistor::resistor(double r){
   resistance = r;
+  name = "resistor";
   setimpedance();
 };//resistor constructor
 resistor::resistor(double r,double f):resistance(r){
+  name = "resistor";
   setimpedance();
 };//resistor constructor
 //~resistor(){cout << "resistor destructor called" << endl;};
@@ -60,6 +66,7 @@ void resistor::info(){
 /* member function of inductor class*/
 
 inductor::inductor(double L):inductance(L){
+  name = "inductor";
   setimpedance();
 };//inductor constructor
 //~inductor(){cout<< "Inductor destructor called" << endl;};
@@ -85,6 +92,7 @@ void inductor::info(){cout << "It is a inductor. It's  inductance is L=" <<  ind
 
 /* member functions of capacitor class*/
 capacitor::capacitor(double C):capacity(C){
+  name = "capacitor";
   setimpedance();
 };//capacitor constructor
 double capacitor::getvalue(){

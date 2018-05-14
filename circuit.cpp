@@ -5,20 +5,30 @@ using namespace std;
 circuit::circuit(){
   conntype = "empty";
   setimpedance();
+  name = "circuit";
 };
 // two sub circuit constructor
-circuit::circuit(component* sub_circuit_1,component* sub_circuit_2, string ctype){
+circuit::circuit(circuit* sub_circuit_1,circuit* sub_circuit_2, string ctype){
   sub_circuit.push_back(sub_circuit_1);
   sub_circuit.push_back(sub_circuit_2);
   conntype = ctype;
+  name = "circuit";
   setimpedance();
 };
 // one subcicuit constructor
-circuit::circuit(component* sub_circuit_1){
+circuit::circuit(circuit* sub_circuit_1){
   sub_circuit.push_back(sub_circuit_1);
   conntype = "single";
+  name = "circuit";
   setimpedance();
 };
+circuit::circuit(component* newcomponent){
+  conntype = "component";
+  name == "circuit";
+  base_component = newcomponent;
+  setimpedance();
+};
+
 void circuit::setimpedance(){
     if(conntype=="series") {
       sub_circuit[0]->setf(frequency);
@@ -37,8 +47,10 @@ void circuit::setimpedance(){
     }else if(conntype=="single"){
       sub_circuit[0]->setf(frequency);
       impedance = sub_circuit[0]->getimpedance();
-    }else{
-      cout << "wrong connection type" <<endl;}
+    }else if(conntype=="component"){
+      impedance = complex<double>(0,0);
+      //impedance = base_component-> getimpedance();
+    }
 };
 //set the frequency of the circuit and update the impedance accordingly
 void circuit::setf(double f){
@@ -52,6 +64,7 @@ void circuit::info(){
 };
 void circuit::setvalue(double value){};
 double circuit::getvalue(){};
+
 void circuit::delsubcircuit(){
   cout << "the current circuit is \" " << conntype <<"\" type" <<endl;
   // type 1
@@ -89,3 +102,49 @@ void circuit::delsubcircuit(){
    }
   }
 };
+
+string circuit::getconntype(){
+return conntype;
+};
+
+//component* circuit::getsubcircuit(int i){return sub_circuit[i];};
+/*
+void circuit::wire(int& space){
+  for(int i=0;i<space;i++)
+  cout << "| "<<endl;
+}
+//void tree(component* circuit2plot)
+
+void circuit::plot(component* circuit2plot,int& space){
+  string name = circuit2plot -> getname();
+  if(conntype!="component"){
+    string conntype = circuit2plot -> getconntype();
+     wire(space);
+      if(conntype=="series" ){
+        cout<< "S\n |-"<<endl;
+        plot(circuit2plot->sub_circuit[0],space);
+        cout<< " |-"<<endl;
+        plot(circuit2plot->sub_circuit[1],space);
+      }else if(conntype=="parallel"){
+        plot(circuit2plot->sub_circuit[0],space);
+        cout<< "P\n |-"<<endl;
+        plot(circuit2plot->sub_circuit[1],space);
+      }else if(conntype=="empty"){
+        cout<< "E";
+        space = space -1;
+      }else if(conntype=="single"){
+        cout<< "O-" ;
+        plot(circuit2plot->sub_circuit[0],space);
+      }
+  }else if(name=="resistor"){
+    cout << "R";
+    space = space -1;
+  }else if(name == "capacitor"){
+    cout << "C";
+    space = space -1;
+  }else if(name == "inductor"){
+    cout << "L";
+    space = space -1;
+  }
+}
+*/

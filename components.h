@@ -14,6 +14,7 @@ class component{
     protected:
       complex<double> impedance;
       double frequency;
+      string name;
     public:
       component();
       virtual void setimpedance()=0;
@@ -21,8 +22,11 @@ class component{
       virtual void info()=0;
       virtual void setvalue(double)=0;
       virtual double getvalue()=0;
+      //virtual string getconntype();
+      //virtual vector<component*> getsubcircuit(int;
       virtual void delsubcircuit(){};
       virtual void setc(double c){};
+      string getname();
       //virtual void setr(double);
       //virtual void setl(double);
       virtual ~component(){}; //virtual Destructor

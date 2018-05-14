@@ -13,16 +13,21 @@ int main(){
     component *shape_array[7];
     shape_array[0] = new capacitor(1.2);
     shape_array[1] = new capacitor(2);
-    //shape_array[2] = new inductor(3);
-    //cout.precision(1);
-    shape_array[2] = new circuit(shape_array[0],shape_array[1],"parallel");
-    shape_array[2] -> setf(4);
-    shape_array[3] = new circuit(new resistor(2),shape_array[1],"parallel");
-    //cout<< shape_array[1] -> getimpedance() <<endl;
-    shape_array[3] -> setf(2);
-    shape_array[3]->info();
-    shape_array[3] -> delsubcircuit();
-    shape_array[3]->info();
+    cout << shape_array[0]->getname()<<endl;
+    shape_array[2] = new inductor(3);
+    circuit *circuit_array[5];
+    cout.precision(1);
+    circuit_array[2] = new circuit(shape_array[0]);
+    circuit_array[2] -> setf(4);
+    circuit_array[3] = new circuit(circuit_array[2],circuit_array[2],"parallel");
+    cout<< shape_array[1] -> getimpedance() <<endl;
+    circuit_array[3] -> setf(2);
+    circuit_array[2]->info();
+    circuit_array[3] -> delsubcircuit();
+    circuit_array[3]->info();
+    //shape_array[4] = shape_array[3]->getsubcircuit(0);
+    //int d = 0;
+    //plot(shape_array[3], d);
     /*
     for(int i=0;i<1;i++){
         shape_array[i] -> setf(5);
@@ -34,6 +39,15 @@ int main(){
         cout << shape_array[i]->getimpedance()<<endl;
         cout << shape_array[i]->getphase()<<endl;
         cout << shape_array[i]->getmagnitude()<<endl;
-    }*/
+    }
+
+    bool Usercreat=1;
+    do{
+    cout<< "Now you can creat your own AC cicuit" <<endl;
+    cout << "First Assign the frequency" <<end;
+
+
+    }    while(Usercreat==1);
+    */
     return 0;
 }
