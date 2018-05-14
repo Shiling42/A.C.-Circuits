@@ -58,9 +58,13 @@ void circuit::setf(double f){
   setimpedance();
 };
 void circuit::info(){
+  vector<bool> branch;
+  branch.clear();
+  int level=0;
   cout << "\n****Information of this circuit:*****"<<endl;
   cout << "impedance = " << impedance << ", frequency ="<< frequency <<endl;
   cout << "circuit type is \" "<< conntype <<"\"" << endl;
+  plot(branch,level);
 };
 void circuit::setvalue(double value){};
 double circuit::getvalue(){};
@@ -109,50 +113,89 @@ return conntype;
 
 //component* circuit::getsubcircuit(int i){return sub_circuit[i];};
 
-void circuit::wire(int& space){
-  for(int i=0;i<space+1;i++)
-  cout << "| ";
-
-  //cout<< space<<endl;
+void circuit::wire(vector<bool>& branch,int& level){
+  for(int i=0;i<level;i++){
+    if(branch[i]){
+      cout<<"| ";
+    }else{
+      cout<<"  ";
+    }
+  }
+  //cout<< label<<endl;
 }
-
 //void tree(component* circuit2plot)
-
-void circuit::plot(int& space){
+void circuit::branchtype(vector<bool>& branch,int& level,bool type){
+  if(branch.size()<level+1){
+    branch.push_back(type);
+  }else{
+    branch[level]=type;
+  }
+}
+void circuit::plot(vector<bool>& branch,int& level){
   //string name = circuit2plot -> getname();
-  wire(space);
+  //wire(label);
   if(conntype != "component"){
     //string conntype = circuit2plot -> getconntype()
       if(conntype=="series" ){
-        cout<< "S\n|-";
-        sub_circuit[0]->plot(space);
+        //cout<< "S"<<label[0]<<"\n";
+        cout << "S" <<endl;
+        wire(branch,level);
         cout<< "|-";
-        sub_circuit[1]->plot(space);
-        space = space +1;
+        branchtype(branch,level,1);
+        level = level +1;// go to the next level
+        //label[0] = label[0] +1;
+        sub_circuit[0]->plot(branch,level);
+        wire(branch,level);
+        cout<< "`-";
+        branchtype(branch,level,0);
+        level = level+1;
+        sub_circuit[1]->plot(branch,level);
+        level = level - 1;
       }else if(conntype=="parallel"){
-        cout<< "P\n|-";
-        sub_circuit[0]->plot(space);
+        //cout<< "P"<<label[1]<<"\n";
+        cout<< "P" <<endl;
+
+        wire(branch,level);
         cout<< "|-";
-        sub_circuit[1]->plot(space);
-        space = space +1;
+        branchtype(branch,level,1);
+        level = level+1;
+        //label[1] = label[1] +1;
+        sub_circuit[0]->plot(branch,level);
+        //level = level - 1;
+        wire(branch,level);
+        cout<< "`-";
+        branchtype(branch,level,0);
+        level = level+1;
+        sub_circuit[1]->plot(branch,level);
+        level = level - 1;
+
       }else if(conntype=="empty"){
-        cout<< "E"<<endl;;
-        space = space -1;
+        cout << "E";
+        //cout<< "E"<< label[2];
+        //label[2] = label[2]+1;
+        //label = label -1;
+        level = level -1;
       }else if(conntype=="single"){
-        cout<< "O-" ;
-        sub_circuit[0]->plot(space);
-        space = space +1;
+        //cout<< "O"<<label[3]<<"\n" ;
+        cout<< " " << endl;
+        wire(branch,level);
+        cout<< "`-";
+        branchtype(branch,level,0);
+        level = level+1;
+        sub_circuit[0]->plot(branch,level);
+      //  label[3] = label[3]+1;
+      level = level -1;
       }
   }else{
      if(base_component->getname()=="resistor"){
-      cout << "R"<<endl;;
-      space = space -1;
+      cout << "R\n";
+      level = level -1;
     }else if(base_component->getname() == "capacitor"){
-      cout << "C"<<endl;;
-      space = space -1;
+      cout << "C\n";
+      level = level -1;
     }else if(base_component->getname() == "inductor"){
-      cout << "L"<<endl;;
-      space = space -1;
+      cout << "L\n";
+      level = level -1;
     }
   }
 }

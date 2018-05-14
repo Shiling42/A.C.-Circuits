@@ -33,8 +33,9 @@ class circuit: public component{
     void info();
     void setvalue(double);
     double getvalue();
-    void wire( int& );
-    void plot(int& space);
+    void branchtype(vector<bool>&,int&, bool);
+    void wire(vector<bool>&, int& );
+    void plot(vector<bool>&,int& level);
 
 
     ~circuit(){}; //virtual Destructor

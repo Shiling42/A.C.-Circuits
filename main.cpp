@@ -15,18 +15,23 @@ int main(){
     shape_array[1] = new capacitor(2);
     cout << shape_array[0]->getname()<<endl;
     shape_array[2] = new inductor(3);
-    circuit *circuit_array[5];
+    circuit *circuit_array[6];
     cout.precision(1);
     circuit_array[2] = new circuit(shape_array[0]);
+    circuit_array[1] = new circuit(shape_array[2]);
     circuit_array[2] -> setf(4);
-    circuit_array[3] = new circuit(circuit_array[2],circuit_array[2],"parallel");
+    circuit_array[3] = new circuit(circuit_array[1],circuit_array[2],"parallel");
     cout<< shape_array[1] -> getimpedance() <<endl;
     circuit_array[3] -> setf(2);
     circuit_array[4] = new circuit(circuit_array[3],circuit_array[3],"series");
-    circuit_array[2]->info();
+    circuit_array[5] = new circuit(circuit_array[3]);
+    circuit_array[6] = new circuit(circuit_array[5],circuit_array[3],"parallel");
+    circuit_array[5]->info();
+    circuit_array[4]->info();
+    circuit_array[6]->info();
     //circuit_array[3] -> delsubcircuit();
-    int a=0;
-    circuit_array[4]->plot(a);
+    //int label[4] = (0,0,0,0);
+
     //shape_array[4] = shape_array[3]->getsubcircuit(0);
     //int d = 0;
     //plot(shape_array[3], d);
