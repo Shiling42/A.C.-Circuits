@@ -70,6 +70,9 @@ void instruction_of_circuit_construction(){
   cout<<"The topology of a circuit is represented by a tree diagram";
   cout<<"Each node can have at most two branches, and the character assigned to each node represents its type:";
   cout<<"\"P\" for parallel, \"S\" for series, \"E\" for empty, \"O\" for single, and \"R\", \"C\",\"L\" are for three type \"component\" circuit"<<endl;
+  cout << "Press Enter to Continue";
+  cin.ignore();
+  cout<<"\n";
 };
 void construct_circuit(vector<component*>& components_container, vector<circuit*>& circuits_container){
   cout << "To read the instruction on how to creat a circuit, input (y/n)"<<endl;
@@ -173,7 +176,6 @@ void construct_circuit(vector<component*>& components_container, vector<circuit*
     repeat = (input=='y');
   }while(repeat);
 }
-
 void get_information_circuits(vector<circuit*> circuits_container){
   if(circuits_container.size()==0){
     cout<<"There are no circuits"<<endl;
@@ -208,6 +210,16 @@ void get_information_components(vector<component*> components_container){
   }
   }
 }
+
+int get_number(int lowerbound, int upperbound){
+  int innumber;
+  cout<<" "<<lowerbound<<"~"<<upperbound<<":"<< endl;
+  do{
+    cin >> innumber;
+  }while(innumber>lowerbound && innumber<lowerbound);
+  return innumber;
+};
+
 void get_information(vector<component*> components_container, vector<circuit*> circuits_container){
   bool repeat(true);
   do{
@@ -228,4 +240,13 @@ void get_information(vector<component*> components_container, vector<circuit*> c
     }while(input != 'y' && input!='n');
     repeat = (input=='y');
   }while(repeat);
+}
+
+bool yes_or_no(string sentence){
+  char userinput;
+  do{
+    cout << sentence << " (y/n):";
+    cin>>userinput;
+  }while(userinput!='y' && userinput!='n');
+  return userinput == 'y';
 }

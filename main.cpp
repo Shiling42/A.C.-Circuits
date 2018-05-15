@@ -58,7 +58,23 @@ int main(){
       case 5:{
         cout << "You are going to modify existing circuits. Check existing circuits first:"<<endl;
         get_information_circuits(circuits_container);
-        cout << "Choose which circuits to modify: " << endl;
+        cout << "Choose which circuits to modify: " ;
+        int number = get_number(0, circuits_container.size()-1);
+        string circuit_type = circuits_container[number] -> getconntype();
+        circuits_container[number] ->info();
+        if(circuit_type == "component"){
+          component* comp = circuits_container[number] -> getcomponent();
+          cout<< "It is a component circuit:\n ";
+          comp->info();
+          bool changeornot = yes_or_no("Do you want to change it's value?");
+          if(changeornot){
+            cout << "Give a new value:"<<endl;
+
+          }
+        }else{
+          cout<<"You can modify the circuit by deleting part of it."<<endl;
+          circuits_container[number] -> delsubcircuit();
+        }
         break;
       }
       case 6:{

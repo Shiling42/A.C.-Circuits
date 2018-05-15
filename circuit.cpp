@@ -144,7 +144,17 @@ void circuit::setlabel(int inlabel){
   label = inlabel;
 }
 string circuit::getconntype(){
-return conntype;
+  return conntype;
+};
+component* circuit::getcomponent(){
+  return base_component;
+}
+string circuit::get_component_name(){
+  if(conntype == "component"){
+    return base_component->getname();
+  }else{
+    return "It's not a component circuit.";
+  }
 };
 //component* circuit::getsubcircuit(int i){return sub_circuit[i];};
 void circuit::format(vector<bool>& branch,int& level){

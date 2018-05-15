@@ -20,4 +20,6 @@ void get_information_components(vector<component*> components_container);
 void get_information_circuits(vector<circuit*> circuits_container);
 void get_information(vector<component*> components_container, vector<circuit*> circuits_container);
 void creat_component(vector<component*>& components_container);
+int get_number(int , int );
+bool yes_or_no(string);
 #endif
