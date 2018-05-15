@@ -70,7 +70,7 @@ void instruction_of_circuit_construction(){
   cout<<"Each node can have at most two branches, and the character assigned to each node represents its type:";
   cout<<"\"P\" for parallel, \"S\" for series, \"E\" for empty, \"O\" for single, and \"R\", \"C\",\"L\" are for three type \"component\" circuit"<<endl;
 };
-void construct_circuit(vector<component*> components_container, vector<circuit*> circuits_container){
+void construct_circuit(vector<component*>& components_container, vector<circuit*>& circuits_container){
   cout << "To read the instruction on how to creat a circuit, input (y/n)"<<endl;
   char read = 'n';
   cin >> read;
@@ -84,6 +84,7 @@ void construct_circuit(vector<component*> components_container, vector<circuit*>
     do{//creat circuits
       if(circuits_container.size()==0){
         cout << "There is not any circuit created, at least one \"component\" circuit is needed "<<endl;
+        cout << "Do you want to creat a new component or choose one from components container(y/n): "<<endl;
         int first_circuit;
         do{
           cout<<"Input the type of first component circuit (1: resistor; 2: capacitor; 3: inductor):" <<endl;
@@ -167,6 +168,7 @@ void construct_circuit(vector<component*> components_container, vector<circuit*>
       cout <<"Do you want to continue consturcting circuit? y/n"<<endl;
       cin >> input;
     }while(input != 'y' && input!='n');
+    circuits_container[circuits_container.size()-1]->setlabel(circuits_container.size()-1);
     repeat = (input=='y');
   }while(repeat);
 }

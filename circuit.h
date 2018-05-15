@@ -19,6 +19,7 @@ class circuit: public component{
     string conntype;
     vector<circuit*> sub_circuit;
     component* base_component;//store the component for component type circuit
+    int label;
   public:
     circuit();
     circuit(circuit* sub_circuit_1,circuit* sub_circuit_2, string ctype);
@@ -27,14 +28,16 @@ class circuit: public component{
     circuit(int comonent_type);
     string getconntype();
     //vector<circuit*> getsubcircuits(int i);
+    void setlabel(int);
     void delsubcircuit();
     void setimpedance();
     void setf(double);
+    void setf();
     void info();
     void setvalue(double);
     double getvalue();
     void branchtype(vector<bool>&,int&, bool);
-    void wire(vector<bool>&, int& );
+    void format(vector<bool>&, int& );
     void plot(vector<bool>&,int& level);
     ~circuit(){}; //virtual Destructor
 };
