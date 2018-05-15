@@ -13,7 +13,7 @@ using namespace std;
 
 
 
-void help(string);
+//void help(string);
 void construct_circuit(vector<component*>& components_container, vector<circuit*>& circuits_container);
 void instruction_of_circuit_construction();
 void get_information_components(vector<component*> components_container);

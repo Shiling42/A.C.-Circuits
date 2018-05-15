@@ -1,10 +1,11 @@
 #include "functions.h"
 
-help(){
+/*
+help(string choice){
   cout << "1 how to construct parameter" <<endl;
   cout << "2 how to delete circuit" << endl;
   cout<< "input the number of help you needed:"<<endl;
-}
+}*/
 void creat_component(vector<component*>& components_container){
   bool repeat(true);
   do{
