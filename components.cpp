@@ -58,7 +58,7 @@ void resistor::setf(double f){
   setimpedance();
 };
 void resistor::info(){
-  cout<< "It is a resistor. It's resistance is R=" << resistance << "Omega" << endl;
+  cout<< "It is a resistor. It's resistance is R=" << resistance << " Ohm" << endl;
 };
 
 
@@ -74,7 +74,7 @@ double inductor::getvalue(){
   return inductance;
 };
 void inductor::setimpedance(){
-  impedance = complex<double>(0.0,-inductance/frequency);
+  impedance = complex<double>(0.0,-inductance/(frequency*PI*2+e));
 };
 void inductor::setvalue(double L){
   inductance=L;
@@ -88,7 +88,7 @@ void inductor::setf(double f){
   frequency=f;
   setimpedance();
 };
-void inductor::info(){cout << "It is a inductor. It's  inductance is L=" <<  inductance << "unit" << endl;};
+void inductor::info(){cout << "It is a inductor. It's  inductance is L=" <<  inductance << " Henry" << endl;};
 
 /* member functions of capacitor class*/
 capacitor::capacitor(double C):capacity(C){
@@ -99,7 +99,7 @@ double capacitor::getvalue(){
   return capacity;
 };
 void capacitor::setimpedance(){
-  impedance = complex<double>(0.0,capacity*frequency);
+  impedance = complex<double>(0.0,capacity*frequency*PI*2);
 };
 void capacitor::setvalue(double c){
   capacity=c;
@@ -117,5 +117,5 @@ void capacitor::setf(double f){
 };
 //~capacitor(){cout<< "Capacitor destructor called" << endl;};
 void capacitor::info(){
-  cout << "It is a capacitor. It's capacity is C=" << capacity << "unit" << endl;
+  cout << "It is a capacitor. It's capacity is C=" << capacity << " Farad" << endl;
 };

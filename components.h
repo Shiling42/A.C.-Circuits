@@ -8,7 +8,8 @@ using namespace std;
 #ifndef components_h
 #define components_h
 const double e = std::numeric_limits< double >::min();
-const double THRESHOLD =10*e;
+const double THRESHOLD = 10*e;
+const double PI  = 3.141592653589793238463;
 
 class component{
     protected:

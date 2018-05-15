@@ -1,4 +1,5 @@
 #include "circuit.h"
+#include "interface.h"
 using namespace std;
 
 // default constructor
@@ -34,17 +35,17 @@ circuit::circuit(int comonent_type){
   switch(comonent_type){
     case(1): {cout<<"Input the resistance"<<endl;
               double  value;
-              cin>>value;
+              value=cinvalue();
               base_component = new resistor(value);
               break;};
     case(2):{ cout<<"input the capacity"<<endl;
               double  value;
-              cin>>value;
+              value=cinvalue();
               base_component = new capacitor(value);
               break;};
     case(3):{ cout<<"input the inductane"<<endl;
               double  value;
-              cin>>value;
+              value=cinvalue();
               base_component = new inductor(value);
              break;} ;
     default:{};
@@ -91,13 +92,14 @@ void circuit::info(){
   branch.clear();
   int level=0;
   cout << "\n****Information of this circuit:*****"<<endl;
-  cout << "impedance = " << impedance << ", frequency ="<< frequency <<endl;
+  cout << "impedance = " << impedance << ", frequency ="<< frequency <<" Hz."<<endl;
   if(conntype == "component"){
     cout << "circuit type is \" "<< conntype <<"\": " <<base_component->getname()<< endl;
     base_component -> info();
   }else{
     cout << "circuit type is \" "<< conntype <<"\""<< endl;
   }
+  cout << "The magnitude is "<<getmagnitude()<<" and thePhase shift is: "<<getphase() <<endl;
   plot(branch,level);
 };
 void circuit::setvalue(double value){};
