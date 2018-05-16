@@ -10,26 +10,33 @@ An OPP C++ base program is written to simulate a general series-parallel AC circ
 
 ## Introduction
 
-![](\citcuit.png)
+![](citcuit.png)
 
 In an alternating-current(AC) circuit, an AC source applies oscillation voltage on a two-terminal circuit element. Then an alternating current is generated in the circuit.  Here only the parallel-series is discussed, in which the circuit components are connected either in parallel or series. Three kinds of ideal components, resistor, inductor and capacitor, are used to construct the circuit. The relation between voltage and current is measured by the impedance of the circuit element as
+
 $$
 V=ZI
 $$
+
 This equation is called impedance Ohm's Law. Where $V$ is the voltage applied, $I$ is the current., $Z$ is the impedance. If the voltage is a sinusoidal function of time,  the impedance $Z$ externally depends only on the frequency of the voltage.  Hence both voltage and current are sinusoidal, and they are usually represented as complex-valued functions
 
 
 $$
 V=|V| e^{i(\omega t+\phi_V)}
 $$
+
 $$
 I=|I| e^{i(\omega t+\phi_I)}
 $$
+
 where $U_0$ and $I_0$ are the amplitude of voltage and current, respectively. $\omega$ is the angular frequency. $\phi_V$ and $\phi_I$ are the phases. The impedance is also a complex number
+
 $$
 Z=R+iX=|Z|e^{i\arg(Z)}
 $$
+
 where $R$ and $X$ are both real number. $R$ is called resistance and $X$ is called reactance. $\arg(Z)$ is the argument of $Z$ , defined by $\arg(Z)=\arctan(R/X)$. Substituting above equations in to the impedance Ohm's law gives
+
 $$
 |V|=|Z||I|e^{i(\phi_I-\phi_V+\arg(Z))}
 $$
@@ -48,6 +55,7 @@ $$
 
 ### Ideal Components
 As mentioned above, three kinds of basic circuit components are used to construct circuits. Their properties are summarised in the following table.
+
 
 | Component name | Characteristic quantity | Differential equation |       Impedance        |   Phase shift    |
 | :------------: | :---------------------: | :-------------------: | :--------------------: | :--------------: |
@@ -142,9 +150,13 @@ There is not any circuit constructed, at least one "component" circuit is requir
 As shown above, there are two ways to construct a `component` circuit. The user can directly create on or choose one from components container.  Note that if the user chooses to create one directly, the created component will only be stored in the `component` circuit, and no component will be added to the `components_container`. Strictly speaking, the `components_container` is not necessary for circuit constructing, while storing components in the container can simplify the constructing process.
 
 Once a circuit is constructed, the user can visit the circuits by entering `4: Get information of existing circuits` from the menu page.  To test the code, an RLC series circuit is constructed with the following parameters:
+
+
 |       R       |        L        |           C           |      frequency      | expecting impedance of RLC |
 | :-----------: | :-------------: | :-------------------: | :-----------------: | :------------------------: |
 | $500\ \Omega$ | $1\  \mathrm H$ | $0.0001\  \mathrm F $ | $100\  \mathrm{Hz}$ |       $500+i612.403$       |
+
+
 ```bash
 impedance = (500,612.403), frequency = 100 Hz.
 circuit type is " series"
