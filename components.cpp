@@ -74,7 +74,7 @@ double inductor::getvalue(){
   return inductance;
 };
 void inductor::setimpedance(){
-  impedance = complex<double>(0.0,-inductance/(frequency*PI*2+e));
+  impedance = complex<double>(0.0,inductance*frequency*PI*2);
 };
 void inductor::setvalue(double L){
   inductance=L;
@@ -99,7 +99,7 @@ double capacitor::getvalue(){
   return capacity;
 };
 void capacitor::setimpedance(){
-  impedance = complex<double>(0.0,capacity*frequency*PI*2);
+  impedance = complex<double>(0.0,-1/(capacity*frequency*PI*2+e));
 };
 void capacitor::setvalue(double c){
   capacity=c;
