@@ -10,7 +10,7 @@ An OPP C++ base program is written to simulate a general series-parallel AC circ
 
 ## Introduction
 
-![](C:\Users\Shiling\OneDrive\UoM_3rd_2\C++\Project\1526410698146.png)
+![](\citcuit.png)
 
 In an alternating-current(AC) circuit, an AC source applies oscillation voltage on a two-terminal circuit element. Then an alternating current is generated in the circuit.  Here only the parallel-series is discussed, in which the circuit components are connected either in parallel or series. Three kinds of ideal components, resistor, inductor and capacitor, are used to construct the circuit. The relation between voltage and current is measured by the impedance of the circuit element as
 $$
