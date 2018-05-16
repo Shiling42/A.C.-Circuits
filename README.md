@@ -2,7 +2,6 @@
 
 # An OPP C++ implementation on A.C. Circuits
 -  ***Shiling Liang***
-   ***Student ID: 10099024***
    ***School of Physics and Astronomy***
    ***University of Manchester***
 
